@@ -16,6 +16,7 @@ import time
 TIME_OFF = 21
 TIME_ON = 6
 TEMP_FAN = 76
+LightsAreOn = False
 # Setup GPIO (2-27)
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(27, GPIO.OUT)
@@ -29,10 +30,12 @@ GPIO.setup(21,GPIO.OUT)
 # Get time and see if lights should be on or off
 while True:
     time = time.localtime()
-    if time.tm_hour == TIME_ON:
+    if LightsAreOn == False and time.tm_hour == TIME_ON:
         lights.on()
-    if time.tm_hour == TIME_OFF:
+        LightsAreOn = True
+    if LightsAreOn == True and time.tm_hour == TIME_OFF:
         lights.off()
+        LightsAreOn = False
     if temperature >= TEMP_FAN:
         fan.on()
     else:
