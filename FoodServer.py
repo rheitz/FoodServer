@@ -11,6 +11,41 @@ import time
 
 # functions
 
+def fanOn():
+    GPIO.output(11,GPIO.HIGH)
+def fanOff():
+    GPIO.output(11,GPIO.LOW)
+
+def humidifierFanOn():
+    GPIO.output(12,GPIO.HIGH)
+
+def humidifierFanOff():
+    GPIO.output(12,GPIO.LOW)
+
+def misterOn():
+    GPIO.output(13,GPIO.HIGH)
+
+def misterOff():
+    GPIO.output(13,GPIO.LOW)
+
+def lightsOn():
+    GPIO.output(27,GPIO.HIGH)
+    for i in range(2,11):
+        GPIO.output(i,GPIO.HIGH)
+
+def lightsOff():
+    GPIO.output(27,GPIO.LOW)
+    for i in range(2,11):
+        GPIO.output(i,GPIO.LOW)
+
+def humidifierOn():
+    mister.on()
+    fan.on()
+    
+def humidifierOff():
+    mister.off()
+    fan.off()
+
 # Turn on/off times for light
 # Target temperature and humidity (76 F and 70% RH)
 TIME_OFF = 21
@@ -31,15 +66,6 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(27,GPIO.OUT)
 for i in range(2,21):
     GPIO.setup(i,GPIO.OUT)
-GPIO.setup(22,GPIO.IN)  
-
-def humidifierControl(onOrOff):
-    if onOrOff == True:
-        mister.on()
-        fan.on()
-    else:
-        mister.off()
-        fan.off()
 
 # Main loop
 # Get time and see if lights should be on or off
