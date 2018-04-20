@@ -9,18 +9,14 @@ for i in range(2,21):
 def fanOn():
     GPIO.output(11, GPIO.HIGH)
 
-
 def fanOff():
     GPIO.output(11, GPIO.LOW)
-
 
 def humidifierFanOn():
     GPIO.output(12, GPIO.HIGH)
 
-
 def humidifierFanOff():
     GPIO.output(12, GPIO.LOW)
-
 
 def misterOn():
     GPIO.output(13, GPIO.HIGH)
@@ -28,7 +24,6 @@ def misterOn():
 
 def misterOff():
     GPIO.output(13, GPIO.LOW)
-
 
 def lightsOn():
     lights = [27, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -41,11 +36,9 @@ def lightsOff():
     for pins in lights:
         GPIO.output(pins, GPIO.LOW)
 
-
 def humidifierOn():
     mister.on()
     fan.on()
-
 
 def humidifierOff():
     mister.off()
